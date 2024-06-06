@@ -45,8 +45,9 @@ public:
 	void SetPoints(FVector Point1, FVector Point2);		
 
 	UFUNCTION()
-	void OnPreassurePlateActivated();
+	void OnTriggerActorActivated();
 
 	UFUNCTION()
-	void OnPreassurePlateDeactivated();
+	void OnTriggerActorDeactivated();
+
 };

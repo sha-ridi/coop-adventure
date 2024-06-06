@@ -79,6 +79,10 @@ void ACollectableKey::OnRep_bCollected()
 	if (HasAuthority())
 	{
 		UE_LOG(LogTemp, Display, TEXT("OnRep_bCollected Server"));
+		if (bCollected)
+		{
+			OnCollected.Broadcast();
+		}
 	}
 	else
 	{

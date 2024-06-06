@@ -3,6 +3,7 @@
 
 #include "Transporter.h"
 #include "PressurePlate.h"
+#include "CollectableKey.h"
 
 UTransporter::UTransporter()
 {
@@ -31,8 +32,14 @@ void UTransporter::BeginPlay()
 		APressurePlate* PreassurePlate = Cast<APressurePlate>(TriggerActor);
 		if (PreassurePlate)
 		{
-			PreassurePlate->OnActivated.AddDynamic(this, &UTransporter::OnPreassurePlateActivated);
-			PreassurePlate->OnDeactivated.AddDynamic(this, &UTransporter::OnPreassurePlateDeactivated);
+			PreassurePlate->OnActivated.AddDynamic(this, &UTransporter::OnTriggerActorActivated);
+			PreassurePlate->OnDeactivated.AddDynamic(this, &UTransporter::OnTriggerActorDeactivated);
+			continue;
+		}
+		ACollectableKey* CollectableKey = Cast<ACollectableKey>(TriggerActor);
+		if (CollectableKey)
+		{
+			CollectableKey->OnCollected.AddDynamic(this, &UTransporter::OnTriggerActorActivated);
 		}
 	}
 }
@@ -71,15 +78,16 @@ void UTransporter::SetPoints(FVector Point1, FVector Point2)
 	bArePointsSet = true;
 }
 
-void UTransporter::OnPreassurePlateActivated()
+void UTransporter::OnTriggerActorActivated()
 {
 	ActivatedTriggerCount++;
 }
 
-void UTransporter::OnPreassurePlateDeactivated()
+void UTransporter::OnTriggerActorDeactivated()
 {
 	ActivatedTriggerCount--;
 }
+
 
 
 
