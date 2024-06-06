@@ -6,6 +6,7 @@
 #include "Net/UnrealNetwork.h"
 #include "CoopAdventureCharacter.h"
 #include "Components/AudioComponent.h"
+#include "CollectableKeyHolder.h"
 
 // Sets default values
 ACollectableKey::ACollectableKey()
@@ -87,5 +88,10 @@ void ACollectableKey::OnRep_bCollected()
 	Mesh->SetVisibility(!bCollected);
 
 	CollectAudio->Play();
+
+	if (bCollected && KeyHolder)
+	{
+		KeyHolder->ActivateKeyMesh();
+	}
 }
 

@@ -8,6 +8,7 @@
 
 class UCapsuleComponent;
 class UAudioComponent;
+class ACollectableKeyHolder;
 
 UCLASS()
 class COOPADVENTURE_API ACollectableKey : public AActor
@@ -48,4 +49,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	UAudioComponent* CollectAudio;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	ACollectableKeyHolder* KeyHolder;
+
 };
