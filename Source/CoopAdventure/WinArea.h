@@ -8,6 +8,8 @@
 
 class UBoxComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FWinAreaOnWin);
+
 UCLASS()
 class COOPADVENTURE_API AWinArea : public AActor
 {
@@ -28,4 +30,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	bool bWin;	
 
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastRPCWin();
+
+	UPROPERTY(BlueprintAssignable)
+	FWinAreaOnWin OnWin;
+	
 };
