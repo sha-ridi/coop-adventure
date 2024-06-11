@@ -31,7 +31,7 @@ APressurePlate::APressurePlate()
 	Mesh->SetupAttachment(RootComp);
 	Mesh->SetIsReplicated(true);
 
-	auto MeshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Engine/BasicShapes/Sphere"));
+	auto MeshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Game/Meshes/Sphere"));
 
 	if (MeshAsset.Succeeded())
 	{
