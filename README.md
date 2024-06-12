@@ -52,12 +52,12 @@ There are multiple ways to run the game:
 1. Create a .bat file with the following content (adjust the paths as necessary):
 
     ```sh
-    "<Path to UnrealEditor.exe>" "<Path to your CoopAdventure.uproject file>" -game -ResX=720 -ResY=405 -WINDOWED
+    "<Path to UnrealEditor.exe>" "<Path to your CoopAdventure.uproject file>" -game -ResX=780 -ResY=450 -WINDOWED
     ```
 
     Example:
     ```sh
-    "C:\Program Files\Epic Games\UE_5.3\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Projects\coop-adventure\CoopAdventure.uproject" -game -ResX=720 -ResY=405 -WINDOWED
+    "C:\Program Files\Epic Games\UE_5.3\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Projects\coop-adventure\CoopAdventure.uproject" -game -ResX=780 -ResY=450 -WINDOWED
     ```
 
 2. Run the .bat file twice to start two instances of the game.
