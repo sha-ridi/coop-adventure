@@ -4,6 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "AssetActionUtility.h"
+
+#include "Materials/Material.h"
+#include "Materials/MaterialInstance.h"
+#include "Particles/ParticleSystem.h"
+#include "Sound/SoundCue.h"
+#include "Sound/SoundWave.h"
+#include "Engine/Texture.h"
+#include "Blueprint/UserWidget.h"
+#include "Animation/MorphTarget.h"
+#include "Components/SkeletalMeshComponent.h"
+
 #include "MyAssetActionUtility.generated.h"
 
 /**
@@ -31,7 +42,29 @@ public:
 	UFUNCTION(CallInEditor)
 	void CheckPowerOfTwo();
 
+	/**
+	 * Add Prefixes to assets (e.g BP_, SM_)
+	 */
+	UFUNCTION(CallInEditor)
+	void AddPrefixes();	
+
 private:
+
+	const TMap<UClass*, FString> PrefixMap = {
+		{UBlueprint::StaticClass(), TEXT("BP_")},
+		{UStaticMesh::StaticClass(), TEXT("SM_")},
+		{UMaterial::StaticClass(), TEXT("M_")},
+		{UMaterialInstance::StaticClass(), TEXT("MI_")},
+		{UMaterialFunctionInterface::StaticClass(), TEXT("MF_")},
+		{UParticleSystem::StaticClass(), TEXT("PS_")},
+		{USoundCue::StaticClass(), TEXT("SC_")},
+		{USoundWave::StaticClass(), TEXT("S_")},
+		{UTexture::StaticClass(), TEXT("T_")},
+		{UTexture2D::StaticClass(), TEXT("T2D_")},
+		{UUserWidget::StaticClass(), TEXT("UW_")},
+		{UMorphTarget::StaticClass(), TEXT("MT_")},
+		{USkeletalMeshComponent::StaticClass(), TEXT("SK_")}
+	};
 
 	/**
 	 * Check if number is power of two

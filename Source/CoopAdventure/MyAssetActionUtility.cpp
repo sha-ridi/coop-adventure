@@ -110,3 +110,41 @@ void UMyAssetActionUtility::CheckPowerOfTwo()
 }
 
 #pragma endregion
+
+#pragma region AddPrefixes
+
+void UMyAssetActionUtility::AddPrefixes()
+{
+    // Get Selected Objects
+    TArray<UObject* > SelectedObjects = UEditorUtilityLibrary::GetSelectedAssets();
+
+    uint32 Counter = 0;
+
+    // Check each Asset if it needs to be renamed
+    for (UObject* SelectedObject : SelectedObjects)
+    {
+        if (ensure(SelectedObject))
+        {
+            const FString* Prefix = PrefixMap.Find(SelectedObject->GetClass());
+
+            if (ensure(Prefix) && !Prefix->Equals(""))
+            {
+                FString OldName = SelectedObject->GetName();
+                if (!OldName.StartsWith(*Prefix))
+                {
+                    FString NewName = *Prefix + OldName;
+                    UEditorUtilityLibrary::RenameAsset(SelectedObject, NewName);
+                    ++Counter;
+                }                                 
+            }
+            else
+            {
+                PrintToScreen("Couldn't find prefix for class " + SelectedObject->GetClass()->GetName(), FColor::Red);
+            }
+        }        
+    }
+
+    GiveFeedback("Added prefix to", Counter);
+}
+
+#pragma endregion
