@@ -187,3 +187,35 @@ void UMyAssetActionUtility::CleanupFolder(FString ParentFolder)
 }
 
 #pragma endregion
+
+#pragma region DuplicateAssets
+
+void UMyAssetActionUtility::DuplicateAssets(uint32 NumberOfDuplicates, bool bSave)
+{
+    // Get Selected Objects
+    TArray<FAssetData> AssetDataArray = UEditorUtilityLibrary::GetSelectedAssetData();
+
+    uint32 Counter = 0;
+
+    // Check each Asset if it needs to be renamed
+    for (FAssetData AssetData : AssetDataArray)
+    {
+        for (uint32 i = 0; i < NumberOfDuplicates; ++i)
+        {
+            FString NewFileName = AssetData.AssetName.ToString().AppendChar('_').Append(FString::FromInt(i));
+            FString NewPath = FPaths::Combine(AssetData.PackagePath.ToString(), NewFileName);
+            if (ensure(UEditorAssetLibrary::DuplicateAsset(AssetData.GetObjectPathString(), NewPath)))
+            {
+                ++Counter;
+                if (bSave)
+                {
+                    UEditorAssetLibrary::SaveAsset(NewPath, false);
+                }
+            }
+        }
+    }
+
+    GiveFeedback("Duplicated", Counter);
+}
+
+#pragma endregion

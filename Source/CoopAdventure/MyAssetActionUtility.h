@@ -55,6 +55,15 @@ public:
 	UFUNCTION(CallInEditor)
 	void CleanupFolder(FString ParentFolder = FString("/Game"));
 
+	/**
+	 * Duplicate selected assets
+	 *  param NumberOfDuplicates - how many duplicates 
+	 *  param bSave - should the duplicates be saved immediately?
+	 */
+	UFUNCTION(CallInEditor)
+	void DuplicateAssets(uint32 NumberOfDuplicates = 1, bool bSave = true);
+
+
 private:
 
 	const TMap<UClass*, FString> PrefixMap = {
