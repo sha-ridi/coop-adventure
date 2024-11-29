@@ -8,6 +8,18 @@ public class CoopAdventure : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "OnlineSubsystem", "OnlineSubsystemSteam", "OnlineSubsystemNull", "Blutility", "UMG" });
+		PublicDependencyModuleNames.AddRange(new string[] { 
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore", 
+			"EnhancedInput", 
+			"OnlineSubsystem", 
+			"OnlineSubsystemSteam", 
+			"OnlineSubsystemNull", 
+			"Blutility", 
+			"UMG",
+			"EditorScriptingUtilities"
+		 });
 	}
 }

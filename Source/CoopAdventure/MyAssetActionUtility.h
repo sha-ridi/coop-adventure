@@ -48,6 +48,13 @@ public:
 	UFUNCTION(CallInEditor)
 	void AddPrefixes();	
 
+	/**
+	 * Cleanup Folder by moving assets
+	 *  param ParentFolder - the parent directory
+	 */
+	UFUNCTION(CallInEditor)
+	void CleanupFolder(FString ParentFolder = FString("/Game"));
+
 private:
 
 	const TMap<UClass*, FString> PrefixMap = {
